@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login
+from django.contrib import messages
 from .models import *
 # Create your views here.
 def home(request):
@@ -40,3 +41,30 @@ def adminHome(request):
 
 def admin_dashboard(request):
     return render(request, 'admin_dashboard.html')
+
+def add_category(request):
+    if request.method == "POST":
+        name = request.POST['name']
+        Category.objects.create(name=name)
+        messages.success(request, "Category added")
+        return redirect('view_category')
+    return render(request, 'add_category.html', locals())
+
+def view_category(request):
+    category = Category.objects.all()
+    return render(request, 'view_category.html', locals())
+
+def edit_category(request, pid):
+    category = Category.objects.get(id=pid)
+    if request.method == "POST":
+        name = request.POST['name']
+        category.name = name
+        category.save()
+        msg = "Category Updated"
+    return render(request, 'edit_category.html', locals())
+
+
+def delete_category(request, pid):
+    category = Category.objects.get(id=pid)
+    category.delete()
+    return redirect('view_category')

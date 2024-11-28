@@ -1,7 +1,10 @@
 {% load static %}
 <html lang="en">
 <head>
-    <title>Online Grocery Shop</title>
+    !<title>Online Grocery Shop</title>
+    <!-- <link rel="icon" href="{% static 'images/logo.svg' %}" />
+    <img src="{% static 'images/logo.svg' %}" />
+    <title ><img src="{% static 'images/logo.svg' %}" alt="" ></title> -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -100,6 +103,12 @@
 
  
     </ul>
+
+    {% for i in messages %}
+<script>
+    alert('{{i}}');
+</script>
+{% endfor %}
 </div>
 <!--vertical navbar end-->
 <!--page content holder-->

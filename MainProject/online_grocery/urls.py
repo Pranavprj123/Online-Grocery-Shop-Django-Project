@@ -31,6 +31,10 @@ urlpatterns = [
     path('admin-login/', adminLogin, name="admin_login"),
     path('adminhome/', adminHome, name="adminhome"),
     path('admindashboard/', admin_dashboard, name="admindashboard"),
+    path('add-category/', add_category, name="add_category"),
+    path('view-category/', view_category, name="view_category"),
+    path('edit-category/<int:pid>/', edit_category, name="edit_category"),
+    path('delete-category/<int:pid>/', delete_category, name="delete_category"),
     
 ]
 
