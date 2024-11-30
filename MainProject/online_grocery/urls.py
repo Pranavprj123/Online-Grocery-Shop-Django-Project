@@ -35,6 +35,10 @@ urlpatterns = [
     path('view-category/', view_category, name="view_category"),
     path('edit-category/<int:pid>/', edit_category, name="edit_category"),
     path('delete-category/<int:pid>/', delete_category, name="delete_category"),
+    path('add-product/', add_product, name='add_product'),
+    path('view-product/', view_product, name='view_product'),
+    path('edit-product/<int:pid>/', edit_product, name="edit_product"),
+    path('delete-product/<int:pid>/', delete_product, name="delete_product"),
     
 ]
 
