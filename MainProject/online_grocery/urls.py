@@ -39,6 +39,7 @@ urlpatterns = [
     path('view-product/', view_product, name='view_product'),
     path('edit-product/<int:pid>/', edit_product, name="edit_product"),
     path('delete-product/<int:pid>/', delete_product, name="delete_product"),
+    path('accounts/',include('accounts.urls')),
     
 ]
 
