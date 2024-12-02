@@ -41,6 +41,7 @@ urlpatterns = [
     path('delete-product/<int:pid>/', delete_product, name="delete_product"),
     path('accounts/',include('accounts.urls')),
     
+    
 ]
 
 

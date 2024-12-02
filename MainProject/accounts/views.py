@@ -31,3 +31,28 @@ def userlogin(request):
         else:
             messages.success(request,"Invalid Credentials")
     return render(request, 'accounts/login.html', locals())
+
+def profile(request):
+    data = UserProfile.objects.get(user=request.user)
+    if request.method == "POST":
+        fname = request.POST['fname']
+        lname = request.POST['lname']
+        email = request.POST['email']
+        address = request.POST['address']
+        mobile = request.POST['mobile']
+        try:
+            image = request.FILES['image']
+            data.image = image
+            data.save()
+        except:
+            pass
+        user = User.objects.filter(id=request.user.id).update(first_name=fname, last_name=lname)
+        UserProfile.objects.filter(id=data.id).update(mobile=mobile, address=address)
+        messages.success(request, "Profile updated")
+        return redirect('profile')
+    return render(request, 'accounts/profile.html', locals())
+
+def logoutuser(request):
+    logout(request)
+    messages.success(request, "Logout Successfully")
+    return redirect('main')
