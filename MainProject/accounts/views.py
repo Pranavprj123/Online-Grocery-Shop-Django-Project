@@ -56,3 +56,33 @@ def logoutuser(request):
     logout(request)
     messages.success(request, "Logout Successfully")
     return redirect('main')
+
+def change_password(request):
+    if request.method == 'POST':
+        o = request.POST.get('old')
+        n = request.POST.get('new')
+        c = request.POST.get('confirm')
+        user = authenticate(username=request.user.username, password=o)
+        if user:
+            if n == c:
+                user.set_password(n)
+                user.save()
+                messages.success(request, "Password Changed")
+                return redirect('main')
+            else:
+                messages.success(request, "Password not matching")
+                return redirect('change_password')
+        else:
+            messages.success(request, "Invalid Password")
+            return redirect('change_password')
+    return render(request, 'accounts/change_password.html')
+
+
+def user_product(request,pid):
+    if pid == 0:
+        product = Product.objects.all()
+    else:
+        category = Category.objects.get(id=pid)
+        product = Product.objects.filter(category=category)
+    allcategory = Category.objects.all()
+    return render(request, "accounts/user-product.html", locals())
