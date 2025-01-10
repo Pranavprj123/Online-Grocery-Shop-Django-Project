@@ -35,8 +35,14 @@ View {{category.name}} Product</h4>
 {{j.name}} Rs.{{j.price}}</h6>
                           <p class="card-text" style="font-size:14px">
 {{j.description}}</p>
-                          <button type="submit" class="btn btn-primary">
-Add to Cart</button>
+                          
+<a href="#" class="btn btn-primary">
+  <i class="fa fa-shopping-cart"></i> Add to cart
+</a>
+<a href="/accounts/product-detail/{{j.id}}/" class="btn btn-warning">
+  
+  <i class="fa fa-info" style="font-size:22px"></i>Detail
+</a>
                         </div>
                       </div>
                   </div>

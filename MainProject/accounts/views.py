@@ -86,3 +86,8 @@ def user_product(request,pid):
         product = Product.objects.filter(category=category)
     allcategory = Category.objects.all()
     return render(request, "accounts/user-product.html", locals())
+
+def product_detail(request, pid):
+    product = Product.objects.get(id=pid)
+    latest_product = Product.objects.filter().exclude(id=pid).order_by('-id')[:10]
+    return render(request, "accounts/product_detail.html", locals())
