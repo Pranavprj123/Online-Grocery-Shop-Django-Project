@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import redirect,get_object_or_404,render
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .models import *
@@ -87,7 +87,7 @@ def user_product(request,pid):
     allcategory = Category.objects.all()
     return render(request, "accounts/user-product.html", locals())
 
-def product_detail(request, pid):
-    product = Product.objects.get(id=pid)
-    latest_product = Product.objects.filter().exclude(id=pid).order_by('-id')[:10]
-    return render(request, "accounts/product_detail.html", locals())
+def product_detail(request, id):
+    print(f"Received ID: {id}")
+    product = get_object_or_404(Product, id=id)
+    return render(request, 'accounts/product_detail.html', {'product': product})
